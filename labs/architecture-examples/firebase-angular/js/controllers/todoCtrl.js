@@ -74,6 +74,8 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, angularFire)
 	};
 
 	var url = 'https://todomvc-angular.firebaseio.com/';
+  var ref = new Firebase(url);
+  $scope.todos = {};
 	$scope.newTodo = '';
 	$scope.editedTodo = null;
 
@@ -82,7 +84,7 @@ todomvc.controller('TodoCtrl', function TodoCtrl($scope, $location, angularFire)
 	}
 	$scope.location = $location;
 
-	angularFire(url, $scope, 'todos', {}).then(function () {
+	angularFire(ref, $scope, 'todos', {}).then(function () {
 		this.onDataLoaded($scope, $location, url);
 	}.bind(this));
 });
